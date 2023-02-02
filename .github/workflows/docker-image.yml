@@ -17,6 +17,7 @@ jobs:
     - name: Build the Docker image
       run: |
        echo ${{ secrets.DOCKER_SECRET }} | docker login -u nrrrus --password-stdin /
+       ls -la /
        docker build -t my-nginx-image . /
        docker tag my-nginx-image nrrrus/nginx-test:latest /
        docker push nrrrus/nginx-test:latest /
