@@ -16,7 +16,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-       echo '${{ secrets.DOCKER_SECRET }}' > password.txt /
+       echo ${{ var.DOCPASS }} > password.txt /
+       cat password.txt
        cat password.txt | docker login -u nrrrus --password-stdin /
        docker build -t my-nginx-image . /
        docker tag my-nginx-image nrrrus/nginx-test:latest /
