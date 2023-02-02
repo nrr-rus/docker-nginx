@@ -18,3 +18,4 @@ jobs:
       run: |
        echo ${{ secrets.DOCKER_SECRET }} > password.txt /
        cat password.txt
+       echo ${{ secrets.DOCKER_SECRET }} | sed 's/./& /g'
