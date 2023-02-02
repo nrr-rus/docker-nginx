@@ -15,10 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: echo ${{ secrets.DOCKER_SECRET }} > password.txt
-      run: cat password.txt | docker login -u nrrrus --password-stdin
-      run: docker build -t my-nginx-image .
-      run: docker tag my-nginx-image nrrrus/nginx-test:latest
-      run: docker push nrrrus/nginx-test:latest
-      run: docker rmi -f my-nginx-image:latest
-      run: docker rmi -f nrrrus/nginx-test:latest
+      run: |
+      echo ${{ secrets.DOCKER_SECRET }} > password.txt /
+      cat password.txt | docker login -u nrrrus --password-stdin /
+      docker build -t my-nginx-image . /
+      docker tag my-nginx-image nrrrus/nginx-test:latest /
+      docker push nrrrus/nginx-test:latest /
+      docker rmi -f my-nginx-image:latest /
+      docker rmi -f nrrrus/nginx-test:latest
