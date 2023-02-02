@@ -1,7 +1,4 @@
 name: Docker Image CI
-
-env:
-      DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
       
 on:
   push:
@@ -19,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-       echo ${{ env.DOCKER_SECRET }} > password.txt /
+       echo ${{ secrets.DOCKER_SECRET }} > password.txt /
        cat password.txt | docker login -u nrrrus --password-stdin /
        docker build -t my-nginx-image . /
        docker tag my-nginx-image nrrrus/nginx-test:latest /
